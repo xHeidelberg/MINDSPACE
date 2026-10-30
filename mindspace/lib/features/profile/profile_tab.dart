@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../all.dart';
 
@@ -12,6 +13,7 @@ class ProfileTab extends StatelessWidget {
     String t, {
     String? info,
     Widget? go,
+    VoidCallback? onTapOverride,
   }) => Padding(
     padding: const EdgeInsets.only(bottom: 10),
     child: Box(
@@ -24,23 +26,25 @@ class ProfileTab extends StatelessWidget {
           style: const TextStyle(fontWeight: FontWeight.w600, color: kText),
         ),
         trailing: const Icon(Icons.chevron_right, color: kMuted),
-        onTap: go != null
-            ? () => Navigator.push(c, MaterialPageRoute(builder: (_) => go))
-            : info == null
-            ? () {}
-            : () => showDialog(
-                context: c,
-                builder: (d) => AlertDialog(
-                  title: Text(t),
-                  content: Text(info),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(d),
-                      child: const Text('Close'),
+        onTap:
+            onTapOverride ??
+            (go != null
+                ? () => Navigator.push(c, MaterialPageRoute(builder: (_) => go))
+                : info == null
+                ? () {}
+                : () => showDialog(
+                    context: c,
+                    builder: (d) => AlertDialog(
+                      title: Text(t),
+                      content: Text(info),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(d),
+                          child: const Text('Close'),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
+                  )),
       ),
     ),
   );
@@ -163,7 +167,25 @@ class ProfileTab extends StatelessWidget {
             context,
             Icons.info_outline,
             'About MindSpace',
-            info: 'MindSpace is a self-care companion, not a replacement for professional care.',
+            onTapOverride: () async {
+              final i = await PackageInfo.fromPlatform();
+              if (!context.mounted) return;
+              showDialog(
+                context: context,
+                builder: (d) => AlertDialog(
+                  title: const Text('About MindSpace'),
+                  content: Text(
+                    'Version ${i.version} (build ${i.buildNumber})\n\nMindSpace is a self-care companion, not a replacement for professional care.',
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(d),
+                      child: const Text('Close'),
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
           const SizedBox(height: 8),
           OutlinedButton.icon(
