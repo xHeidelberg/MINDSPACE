@@ -24,3 +24,7 @@ export 'features/social/my_day_screen.dart';
 export 'features/social/friends_screen.dart';
 export 'features/activities/more_activities.dart';
 export 'features/activities/more_players.dart';
+export 'services/chat_service.dart';
+export 'features/messages/messages_screen.dart';
+export 'services/progress_service.dart';
+export 'features/activities/progress_screen.dart';

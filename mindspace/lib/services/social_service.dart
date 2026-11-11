@@ -57,6 +57,7 @@ class SocialService {
             'name': name,
             'bio': bio,
             'photoUrl': photo,
+            'allowMessages': cur['allowMessages'] ?? true,
           })
         : tx.delete(pub);
   });

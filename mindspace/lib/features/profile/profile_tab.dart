@@ -155,6 +155,12 @@ class ProfileTab extends StatelessWidget {
             'Friends',
             go: const FriendsScreen(),
           ),
+          _row(
+            context,
+            Icons.chat_bubble_outline,
+            'Messages',
+            go: const MessagesScreen(),
+          ),
           _row(context, Icons.notifications_none, 'Reminders'),
           _row(
             context,

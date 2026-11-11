@@ -1,4 +1,4 @@
-const kTermsVersion = '1.0';
+const kTermsVersion = '1.1';
 
 const kTerms = '''
 MINDSPACE TERMS OF USE AND PRIVACY NOTICE
@@ -53,6 +53,9 @@ You can stop using MindSpace at any time and request deletion of your account an
 
 16. CONTACT
 Questions about these Terms, your data, or a deletion request: [your support email address].
+
+17. MESSAGES AND MODERATION
+Messages sent through MindSpace are not end-to-end encrypted. Authorized MindSpace moderators and administrators may review conversations to investigate reports, protect users from harm, and meet legal obligations. Do not share passwords or private information you would not want a moderator to see. You can block and report any conversation at any time.
 
 By scrolling to the end and ticking the box, you confirm that you agree to these Terms, and, if you are under 18, that your parent or guardian has also read and agreed to them.
 ''';
